@@ -1,29 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import { useFormik } from "formik"
+import * as Yup from 'yup'
 import "./index.css"
-
-const validate = values => {
-  const errors = {}
-
-  if(!values.firstname)
-    errors.firstname = 'Required'
-  else if(values.firstname.length > 15)
-    errors.firstname = 'Must be 15 characters or less'
-
-  if(!values.lastname)
-    errors.lastname = 'Required'
-  else if(values.lastname.length > 20)
-    errors.lastname = 'Must be 20 characters or less'
-
-  if(!values.email)
-    errors.email = 'Required'
-  else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))
-    errors.email = 'Invalid email address'  
-
-  return errors
-  
-}
 
 const SignupForm = () => {
   const formik = useFormik({
@@ -32,7 +11,11 @@ const SignupForm = () => {
       firstname: "",
       lastname: "" 
     },
-    validate,
+    validationSchema: Yup.object({
+      firstname:  Yup.string().required('Required').max(15, 'Must be 15 characters or less'),
+      lastname: Yup.string().required('Required').max(20, 'Must be 20 characters or less'),
+      email: Yup.string().required('Required').email('Invalid email address')
+    }) ,
     onSubmit: values => {
       console.log(JSON.stringify(values, null, 2))
     }
