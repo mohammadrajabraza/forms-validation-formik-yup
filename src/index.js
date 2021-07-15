@@ -60,11 +60,15 @@ const SignupForm = () => {
 
   return <Formik
     initialValues={{ email: "", fullname: "", streetAddress: "", password: "",
-      confirmPassword: "", city: "", acceptedTerms: false, jobType: ''}}
+      confirmPassword: "", city: "", acceptedTerms: false, jobType: "", cellphone: ""}}
     validationSchema={Yup.object({
       fullname: Yup.string().required('Required').max(15, 'Must be 15 characters or less'),
       email: Yup.string().required('Required').email('Invalid email address'),
       streetAddress: Yup.string().required('Required'),
+      cellphone: Yup.string().required('Required')
+        .matches(
+           /^((\+92)|(0092)|(92))-{0,1}3\d{2}-{0,1}\d{7}$|^0{0,1}3\d{2}-{0,1}\d{7}$/,
+        'Follow these patterns: 0300-1234567, 92-300-1234567'),
       password: Yup.string().required('Required').min(8, 'Must contain at least 8 characters')
         .matches(
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])[A-Za-z\d!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~]{8,}$/,
@@ -101,6 +105,13 @@ const SignupForm = () => {
           type="email"
           placeholder="abc@example.com"
           label="Email"
+        />
+
+        <MyTextInput
+          name="cellphone"
+          type="tel"
+          placeholder="0300-1234567, 92-300-1234567"
+          label="Cell Phone"
         />
 
         <MyTextInput

@@ -180,6 +180,7 @@ label {
 }
 
 input[type="email"],
+input[type="tel"],
 input[type="text"],
 input[type="number"],
 input[type="password"] {
@@ -196,6 +197,7 @@ input[type="password"] {
 
 @media (prefers-color-scheme: dark) {
   input[type="email"],
+  input[type="tel"],
   input[type="text"],
   input[type="number"],
   input[type="password"] {
@@ -205,6 +207,7 @@ input[type="password"] {
   }
 
   input[type="email"]::placeholder,
+  input[type="tel"]::placeholder,
   input[type="text"]::placeholder,
   input[type="number"]::placeholder,
   input[type="password"]::placeholder,
@@ -215,6 +218,7 @@ input[type="password"] {
 }
 
 input[type="email"],
+input[type="tel"],
 input[type="text"],
 input[type="number"],
 input[type="password"],
@@ -634,6 +638,7 @@ button[type="reset"]:hover {
 
 /* custom */
 input[type="email"],
+input[type="tel"],
 input[type="text"],
 input[type="number"],
 input[type="password"]
