@@ -59,11 +59,16 @@ const SignupForm = () => {
 
 
   return <Formik
-    initialValues={{ email: "", fullname: "", streetAddress: "", password: "",
+    initialValues={{ email: "", fullname: "", cnic: "", streetAddress: "", password: "",
       confirmPassword: "", city: "", acceptedTerms: false, jobType: "", cellphone: ""}}
     validationSchema={Yup.object({
       fullname: Yup.string().required('Required').max(15, 'Must be 15 characters or less'),
       email: Yup.string().required('Required').email('Invalid email address'),
+      cnic: Yup.string().required('Required')
+        .matches(
+          /^\d{5}-{0,1}\d{7}-{0,1}\d{1}$/,
+          'Please follow patterns: 01234-1234567-8'
+        ),
       streetAddress: Yup.string().required('Required'),
       cellphone: Yup.string().required('Required')
         .matches(
@@ -97,7 +102,13 @@ const SignupForm = () => {
           name="fullname"
           placeholder="Ahmed khan"
           type="text"
-          // style={formik.errors.fullname ? inputErrorStyle : {}}
+        />
+
+        <MyTextInput
+          label="CNIC #"
+          name="cnic"
+          placeholder="01234-1234567-8"
+          type="text"
         />
 
         <MyTextInput
