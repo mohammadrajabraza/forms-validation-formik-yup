@@ -181,7 +181,8 @@ label {
 
 input[type="email"],
 input[type="text"],
-input[type="number"] {
+input[type="number"],
+input[type="password"] {
   padding: 0.65rem 0.5rem;
   font-size: 1rem;
   border: 2px solid var(--gray-200);
@@ -196,7 +197,8 @@ input[type="number"] {
 @media (prefers-color-scheme: dark) {
   input[type="email"],
   input[type="text"],
-  input[type="number"] {
+  input[type="number"],
+  input[type="password"] {
     background-color: var(--gray-800);
     border-color: var(--gray-700);
     color: white;
@@ -205,6 +207,7 @@ input[type="number"] {
   input[type="email"]::placeholder,
   input[type="text"]::placeholder,
   input[type="number"]::placeholder,
+  input[type="password"]::placeholder,
   select,
   textarea {
     color: var(--gray-500);
@@ -214,6 +217,7 @@ input[type="number"] {
 input[type="email"],
 input[type="text"],
 input[type="number"],
+input[type="password"],
 textarea,
 select {
   width: 400px;
@@ -632,6 +636,7 @@ button[type="reset"]:hover {
 input[type="email"],
 input[type="text"],
 input[type="number"],
+input[type="password"]
 textarea,
 select {
   width: 400px;
@@ -647,4 +652,22 @@ label.checkbox {
 
 button[type="submit"] {
   margin-top: 1rem;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
 }
