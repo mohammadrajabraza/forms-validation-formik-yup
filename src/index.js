@@ -59,6 +59,7 @@ const MyTextArea = ({ label, ...props }) => {
   )
 }
 
+const re = /^(?! )[A-Za-z0-9 ]*(?<! )$/
 const SignupForm = () => {
   return (
     <Formik
@@ -79,6 +80,11 @@ const SignupForm = () => {
           .string()
           .required('Required')
           .max(15, 'Must be 15 characters or less')
+          .test(
+            'Leading & trailing spaces',
+            'Leading & trailing spaces are not allowed',
+            (input) => re.test(input)
+          )
           .matches(
             /^([a-zA-Z]+\s)*[a-zA-Z]+$/,
             'Only alphabets & spaces are allowed'
