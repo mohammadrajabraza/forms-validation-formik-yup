@@ -4,6 +4,8 @@ import { Formik, Form, useField } from 'formik'
 import * as Yup from 'yup'
 import './index.css'
 
+const spaceAlphaRE = /^(?! )[A-Za-z0-9 ]*(?<! )$/
+const multipleSpacesRE = /\s\s+/
 const inputErrorStyle = {
   border: '2px solid var(--red-600)',
   animation: 'shake 0.82s cubic-bezier(.36,.07,.19,.97) both'
@@ -59,7 +61,6 @@ const MyTextArea = ({ label, ...props }) => {
   )
 }
 
-const re = /^(?! )[A-Za-z0-9 ]*(?<! )$/
 const SignupForm = () => {
   return (
     <Formik
@@ -81,9 +82,14 @@ const SignupForm = () => {
           .required('Required')
           .max(15, 'Must be 15 characters or less')
           .test(
+            'Multiple spaces',
+            'Multiple spaces are not allowed',
+            (input) => !multipleSpacesRE.test(input)
+          )
+          .test(
             'Leading & trailing spaces',
             'Leading & trailing spaces are not allowed',
-            (input) => re.test(input)
+            (input) => spaceAlphaRE.test(input)
           )
           .matches(
             /^([a-zA-Z]+\s)*[a-zA-Z]+$/,
