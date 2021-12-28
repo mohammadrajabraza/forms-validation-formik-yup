@@ -161,6 +161,7 @@ const SignupForm = () => {
             name='cnic'
             placeholder='01234-1234567-8'
             type='text'
+            maxLength='15'
           />
 
           <MyTextInput
