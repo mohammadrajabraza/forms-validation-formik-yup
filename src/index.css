@@ -182,6 +182,7 @@ label {
 input[type="email"],
 input[type="tel"],
 input[type="text"],
+input[type="date"],
 input[type="number"],
 input[type="password"] {
   padding: 0.65rem 0.5rem;
@@ -199,6 +200,7 @@ input[type="password"] {
   input[type="email"],
   input[type="tel"],
   input[type="text"],
+  input[type="date"],
   input[type="number"],
   input[type="password"] {
     background-color: var(--gray-800);
@@ -209,6 +211,7 @@ input[type="password"] {
   input[type="email"]::placeholder,
   input[type="tel"]::placeholder,
   input[type="text"]::placeholder,
+  input[type="date"]::placeholder,
   input[type="number"]::placeholder,
   input[type="password"]::placeholder,
   select,
@@ -220,6 +223,7 @@ input[type="password"] {
 input[type="email"],
 input[type="tel"],
 input[type="text"],
+input[type="date"],
 input[type="number"],
 input[type="password"],
 textarea,
@@ -640,6 +644,7 @@ button[type="reset"]:hover {
 input[type="email"],
 input[type="tel"],
 input[type="text"],
+input[type="date"],
 input[type="number"],
 input[type="password"]
 textarea,

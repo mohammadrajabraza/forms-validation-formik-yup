@@ -61,6 +61,16 @@ const MyTextArea = ({ label, ...props }) => {
   )
 }
 
+const calculateMaxValidDate = () => {
+  let date = new Date()
+  date = date.setFullYear(date.getFullYear() - 18)
+  date = new Date(date)
+  date = date.toISOString().slice(0, 10)
+  return date
+}
+
+const MAX_VALID_DATE = calculateMaxValidDate()
+
 const SignupForm = () => {
   return (
     <Formik
@@ -74,7 +84,8 @@ const SignupForm = () => {
         city: '',
         acceptedTerms: false,
         jobType: '',
-        cellphone: ''
+        cellphone: '',
+        dob: ''
       }}
       validationSchema={Yup.object({
         fullname: Yup
@@ -100,6 +111,16 @@ const SignupForm = () => {
           .matches(
             /^\d{5}-{0,1}\d{7}-{0,1}\d{1}$/,
             'Please follow patterns: 01234-1234567-8'
+          ),
+        dob: Yup
+          .date()
+          .required('Required')
+          .test(
+            'Should be less than current date',
+            'Please select a valid date',
+            value => {
+              return value < new Date(MAX_VALID_DATE)
+            }
           ),
         streetAddress: Yup.string().required('Required'),
         cellphone: Yup.string().required('Required')
@@ -140,6 +161,13 @@ const SignupForm = () => {
             name='cnic'
             placeholder='01234-1234567-8'
             type='text'
+          />
+
+          <MyTextInput
+            label='Date of Birth'
+            name='dob'
+            type='date'
+            max={MAX_VALID_DATE}
           />
 
           <MyTextInput
