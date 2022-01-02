@@ -106,7 +106,14 @@ const SignupForm = () => {
             /^([a-zA-Z]+\s)*[a-zA-Z]+$/,
             'Only alphabets & spaces are allowed'
           ),
-        email: Yup.string().required('Required').email('Invalid email address'),
+        email: Yup
+          .string()
+          .required('Required')
+          .email('Invalid email address')
+          .matches(
+            /^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/,
+            'Invalid email address'
+          ),
         cnic: Yup.string().required('Required')
           .matches(
             /^\d{5}-{0,1}\d{7}-{0,1}\d{1}$/,
